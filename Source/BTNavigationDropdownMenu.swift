@@ -26,7 +26,7 @@
 
 import UIKit
 
-open protocol BTNavigationDropdownMenuDelegate: class {
+public protocol BTNavigationDropdownMenuDelegate: class {
     func menuWillShow()
     func menuWillHide()
 }
