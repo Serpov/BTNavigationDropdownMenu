@@ -26,6 +26,11 @@
 
 import UIKit
 
+protocol BTNavigationDropdownMenuDelegate: class {
+    func viewWillShow()
+    func viewWillShow()
+}
+
 // MARK: BTNavigationDropdownMenu
 open class BTNavigationDropdownMenu: UIView {
 
@@ -54,7 +59,7 @@ open class BTNavigationDropdownMenu: UIView {
             return self.configuration.cellHeight as NSNumber!
         }
         set(value) {
-            self.configuration.cellHeight = CGFloat(value)
+            self.configuration.cellHeight = CGFloat(truncating: value)
         }
     }
 
@@ -231,6 +236,8 @@ open class BTNavigationDropdownMenu: UIView {
 
     open var didSelectItemAtIndexHandler: ((_ indexPath: Int) -> ())?
     open var isShown: Bool!
+    
+    open weak var delegate: BTNavigationDropdownMenuDelegate?
 
     fileprivate weak var navigationController: UINavigationController?
     fileprivate var configuration = BTConfiguration()
@@ -441,6 +448,8 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     func showMenu() {
+        self.delegate?.meuWillShow()
+        
         self.menuWrapper.frame.origin.y = self.navigationController!.navigationBar.frame.maxY
 
         self.isShown = true
@@ -493,6 +502,8 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     @objc func hideMenu() {
+        self.delegate?.meuWillHide()
+        
         // Rotate arrow
         self.rotateArrow()
 
