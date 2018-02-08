@@ -27,8 +27,8 @@
 import UIKit
 
 protocol BTNavigationDropdownMenuDelegate: class {
-    func viewWillShow()
-    func viewWillShow()
+    func menuWillShow()
+    func menuWillHide()
 }
 
 // MARK: BTNavigationDropdownMenu
@@ -448,7 +448,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     func showMenu() {
-        self.delegate?.meuWillShow()
+        self.delegate?.menuWillShow()
         
         self.menuWrapper.frame.origin.y = self.navigationController!.navigationBar.frame.maxY
 
@@ -502,7 +502,7 @@ open class BTNavigationDropdownMenu: UIView {
     }
 
     @objc func hideMenu() {
-        self.delegate?.meuWillHide()
+        self.delegate?.menuWillHide()
         
         // Rotate arrow
         self.rotateArrow()
